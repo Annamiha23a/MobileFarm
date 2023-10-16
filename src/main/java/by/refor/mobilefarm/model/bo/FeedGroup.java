@@ -1,6 +1,5 @@
 package by.refor.mobilefarm.model.bo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,17 +13,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class GeneticGroup {
-    private Long geneticGroupId;
+public class FeedGroup {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long feedGroupId;
     private String type;
     private BigDecimal productivity;
     private BigDecimal weight;
     private BigDecimal geneticWeight;
     private Integer age;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Nutrients nutrients;
     private List<Ration> rations;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    public Nutrients getNutrients(){
-        return nutrients;
-    }
+    private List<Farm> farm;
+    private List<AnimalPassport> animalPassports;
 }

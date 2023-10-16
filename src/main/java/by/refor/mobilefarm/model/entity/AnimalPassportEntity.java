@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 @Accessors(chain = true)
 public class AnimalPassportEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long animalPassportId;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -33,8 +33,8 @@ public class AnimalPassportEntity {
     private AnimalPassportEntity mother;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genetic_group_id")
-    private GeneticGroupEntity geneticGroup;
+    @JoinColumn(name = "feed_group_id")
+    private FeedGroupEntity feedGroup;
 
     @Column(name = "created_date", nullable = false)
     private OffsetDateTime createdDate;
@@ -90,6 +90,23 @@ public class AnimalPassportEntity {
     @Column(name = "weight_growth")
     private BigDecimal weightGrowth;
 
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "originCountry")
+    private String originCountry;
+
+    @Column(name = "externalIdInOriginCountry")
+    private String externalIdInOriginCountry;
+
+    @Column(name = "formed")
+    private Boolean formed;
+
+    @Column(name = "formingDate")
+    private OffsetDateTime formingDate;
+
+    @Column(name = "formerName")
+    private String formerName;
     @Override
     public String toString(){
         return "animalPassportId = " + animalPassportId + ", " +
@@ -97,7 +114,7 @@ public class AnimalPassportEntity {
                 "originalOwnerFarm = " + originalOwnerFarm.getName() + ", " +
                 "father = " + father.getNickname() + ", " +
                 "mother = " + mother.getNickname() + ", " +
-                "geneticGroup = " + geneticGroup.getType() + ", " +
+                "geneticGroup = " + feedGroup.getType() + ", " +
                 "createdDate = " + createdDate + ", " +
                 "externalId = " + externalId + ", " +
                 "nickname = " + nickname + ", " +
@@ -115,6 +132,12 @@ public class AnimalPassportEntity {
                 "lactationStartDate = " + lactationStartDate + ", " +
                 "dryPeriodStartDate = " + dryPeriodStartDate + ", " +
                 "birthDate = " + birthDate + ", " +
-                "weightGrowth = " + weightGrowth;
+                "weightGrowth = " + weightGrowth + ", " +
+                "type = " + type +
+                "originCountry = " + originCountry + ", " +
+                "externalIdInOriginCountry = " + externalIdInOriginCountry + ", " +
+                "formingDate = " +formingDate + ", " +
+                "formerName = " +formerName  ;
+
     }
 }
